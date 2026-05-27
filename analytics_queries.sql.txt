@@ -1,0 +1,24 @@
+-- Total Sales KPI
+select sum(total_revenue) as total_sales
+from retail_project.gold_total_sales;
+
+-- Daily Sales Trend
+select order_date,
+sum(total_price) as daily_sales
+from retail_project.silver_sales
+group by order_date
+order by order_date;
+
+-- Top Customers Revenue
+select customer_name,
+sum(total_price) as revenue
+from retail_project.silver_sales
+group by customer_name
+order by revenue desc
+limit 10;
+
+-- Category Sales Distribution
+select product_category,
+sum(total_price) as category_sales
+from retail_project.silver_sales
+group by product_category;
